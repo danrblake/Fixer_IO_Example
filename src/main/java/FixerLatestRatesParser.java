@@ -1,20 +1,19 @@
 import org.json.simple.JSONObject;
-    public class RatesParser {
+    public class FixerLatestRatesParser {
 
-        JSONObject ratesFile;
+        JSONObject latestRates;
         JSONObject rateValues;
 
-        public RatesParser(String filePath) {
-            RateFileReader rateFileReader = new RateFileReader(filePath);
-            ratesFile = rateFileReader.getFullJSONFile();
-        }
-
-        public JSONObject getFile() {
-            return ratesFile;
+        public FixerLatestRatesParser() {
+            FixerHTTPManager fixerHTTPManager = new FixerHTTPManager();
+            fixerHTTPManager.setLatestRates();
+            JSONFactory jsonFactory = new JSONFactory();
+            jsonFactory.setLatestRates(fixerHTTPManager.getLatestRates());
+            this.latestRates = jsonFactory.getLatestRates();
         }
 
         private Object getJSONValue(String key) {
-            return ratesFile.get(key);
+            return latestRates.get(key);
         }
 
         public String getJSONSuccess() {
