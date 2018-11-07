@@ -1,5 +1,6 @@
 public class main {
     public static void main(String[] args) {
-        KeyReader keyReader = new KeyReader();
+        FixerHTTPManager fixerHTTPManager = new FixerHTTPManager();
+        fixerHTTPManager.setLatestRates();
     }
 }
